@@ -2,6 +2,7 @@ import { Suspense, useEffect, useState } from "react";
 import { useRoutes, Routes, Route } from "react-router-dom";
 import Home from "./components/home";
 import routes from "tempo-routes";
+import { Toaster } from "./components/Toaster";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -22,8 +23,9 @@ function App() {
     }
   }, [isDarkMode]);
 
-  const toggleTheme = () => {
+  const handleThemeToggle = () => {
     setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle("dark");
   };
 
   return (
@@ -33,11 +35,12 @@ function App() {
           <Route
             path="/"
             element={
-              <Home isDarkMode={isDarkMode} onThemeToggle={toggleTheme} />
+              <Home isDarkMode={isDarkMode} onThemeToggle={handleThemeToggle} />
             }
           />
         </Routes>
         {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
+        <Toaster />
       </>
     </Suspense>
   );

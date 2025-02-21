@@ -22,6 +22,7 @@ export default defineConfig({
     }),
     tempo(),
   ],
+  assetsInclude: ['**/*.JPG', '**/*.pdf'],
   resolve: {
     preserveSymlinks: true,
     alias: {

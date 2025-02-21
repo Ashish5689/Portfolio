@@ -10,6 +10,7 @@ import {
 import { Badge } from "./ui/badge";
 import { Github, ExternalLink } from "lucide-react";
 import { Button } from "./ui/button";
+import todoListImage from "../assets/todoApp.png";
 
 interface Project {
   title: string;
@@ -18,9 +19,27 @@ interface Project {
   githubUrl: string;
   liveUrl?: string;
   image: string;
+  features?: string[];
 }
 
 const projects: Project[] = [
+  {
+    title: "AI-Powered Todo List",
+    description: "An innovative, AI-enhanced task management tool that transforms how you handle daily tasks and projects. Built with modern technologies and featuring AI-driven insights for better productivity.",
+    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "OpenAI API"],
+    features: [
+      "Smart Task Management",
+      "Drag & Drop Organization",
+      "AI Task Breakdown",
+      "Automatic Saving",
+      "Geolocation Tracking",
+      "Time Stamping",
+      "Responsive Design"
+    ],
+    githubUrl: "https://github.com/Ashish5689/TodoList",
+    liveUrl: "https://ashishtodo--newtodoailist.netlify.app/",
+    image: todoListImage
+  },
   {
     title: "E-Commerce Platform",
     description:
@@ -90,75 +109,83 @@ const ProjectsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
+          className="space-y-12"
         >
-          <h2 className="text-3xl font-bold text-center mb-12 text-foreground">
-            Projects
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="h-full flex flex-col hover:shadow-lg transition-shadow">
-                  <div className="relative h-48 overflow-hidden rounded-t-lg">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <CardHeader>
-                    <CardTitle>{project.title}</CardTitle>
-                    <CardDescription>{project.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex-grow">
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.map((tech) => (
-                        <Badge key={tech} variant="secondary">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                    <div className="flex gap-4 mt-auto">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="flex items-center gap-2"
-                        asChild
-                      >
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Github className="h-4 w-4" /> Code
-                        </a>
-                      </Button>
-                      {project.liveUrl && (
+          <div className="space-y-4">
+            <h2 className="text-3xl font-bold text-foreground">Featured Projects</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {projects.map((project, index) => (
+                <Card key={index} className="overflow-hidden group">
+                  <CardContent className="p-0">
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                         <Button
                           variant="outline"
-                          size="sm"
-                          className="flex items-center gap-2"
+                          size="icon"
                           asChild
+                          className="rounded-full bg-background/10 hover:bg-background/20 backdrop-blur-sm"
                         >
                           <a
-                            href={project.liveUrl}
+                            href={project.githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <ExternalLink className="h-4 w-4" /> Demo
+                            <Github className="h-5 w-5" />
                           </a>
                         </Button>
+                        {project.liveUrl && (
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            asChild
+                            className="rounded-full bg-background/10 hover:bg-background/20 backdrop-blur-sm"
+                          >
+                            <a
+                              href={project.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <ExternalLink className="h-5 w-5" />
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                    <div className="p-6 space-y-4">
+                      <h3 className="text-xl font-semibold text-foreground">
+                        {project.title}
+                      </h3>
+                      <p className="text-muted-foreground">{project.description}</p>
+                      {project.features && (
+                        <div className="space-y-2">
+                          <h4 className="text-sm font-semibold text-foreground">Key Features:</h4>
+                          <ul className="list-disc list-inside text-sm text-muted-foreground">
+                            {project.features.map((feature, idx) => (
+                              <li key={idx}>{feature}</li>
+                            ))}
+                          </ul>
+                        </div>
                       )}
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies.map((tech, idx) => (
+                          <span
+                            key={idx}
+                            className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

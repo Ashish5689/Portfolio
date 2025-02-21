@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { Download, ArrowRight } from "lucide-react";
 import AnimatedText from "./AnimatedText";
+import defaultProfile from "../assets/newProfile.jpeg";
 
 interface HeroSectionProps {
   name?: string;
@@ -12,8 +13,8 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({
-  name = "John Doe",
-  profileImage = "https://api.dicebear.com/7.x/avataaars/svg?seed=portfolio",
+  name = "Ashish Jha",
+  profileImage = defaultProfile,
   onViewProjects = () => console.log("View Projects clicked"),
   onDownloadResume = () => console.log("Download Resume clicked"),
 }: HeroSectionProps) => {
@@ -93,7 +94,8 @@ const HeroSection = ({
             <motion.img
               src={profileImage}
               alt="Profile"
-              className="relative w-full h-full object-cover rounded-full border-4 border-background shadow-xl"
+              className="relative w-full h-full object-cover object-center rounded-full border-4 border-background shadow-xl"
+              style={{ objectPosition: "center 30%" }}
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 100 }}

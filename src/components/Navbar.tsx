@@ -26,8 +26,9 @@ const Navbar = ({
       href: "#",
       onClick: () => window.scrollTo({ top: 0, behavior: "smooth" }),
     },
-    { label: "Projects", href: "#projects" },
     { label: "About", href: "#about" },
+    { label: "Experience", href: "#experience" },
+    { label: "Projects", href: "#projects" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -82,7 +83,7 @@ const Navbar = ({
                 className="rounded-full"
               >
                 <a
-                  href="https://github.com/yourusername"
+                  href="https://github.com/Ashish5689"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -96,7 +97,7 @@ const Navbar = ({
                 className="rounded-full"
               >
                 <a
-                  href="https://linkedin.com/in/yourusername"
+                  href="https://www.linkedin.com/in/ashish-jha5689/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -158,7 +159,7 @@ const Navbar = ({
                   className="rounded-full"
                 >
                   <a
-                    href="https://github.com/yourusername"
+                    href="https://github.com/Ashish5689"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -172,7 +173,7 @@ const Navbar = ({
                   className="rounded-full"
                 >
                   <a
-                    href="https://linkedin.com/in/yourusername"
+                    href="https://www.linkedin.com/in/ashish-jha5689/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

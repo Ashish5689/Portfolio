@@ -4,6 +4,9 @@ import HeroSection from "./HeroSection";
 import ProjectsSection from "./ProjectsSection";
 import AboutSection from "./AboutSection";
 import ContactSection from "./ContactSection";
+import ExperienceSection from "./ExperienceSection";
+import profileImage from "../assets/newProfile.jpeg";
+import resumePDF from "../assets/Ashish_jha_Resume.pdf";
 
 interface HomeProps {
   isDarkMode?: boolean;
@@ -15,10 +18,9 @@ const Home = ({
   onThemeToggle = () => console.log("Theme toggle clicked"),
 }: HomeProps) => {
   const handleDownloadResume = () => {
-    // Replace '/resume.pdf' with the actual path to your resume file
     const link = document.createElement("a");
-    link.href = "/resume.pdf";
-    link.download = "john-doe-resume.pdf";
+    link.href = resumePDF;
+    link.download = "Ashish_jha_Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -34,12 +36,13 @@ const Home = ({
       <Navbar isDarkMode={isDarkMode} onThemeToggle={onThemeToggle} />
       <main className="pt-20">
         <HeroSection
-          name="John Doe"
-          profileImage="https://api.dicebear.com/7.x/avataaars/svg?seed=portfolio"
+          name="Ashish Jha"
+          profileImage={profileImage}
           onViewProjects={scrollToProjects}
           onDownloadResume={handleDownloadResume}
         />
         <AboutSection />
+        <ExperienceSection />
         <ProjectsSection />
         <ContactSection />
       </main>

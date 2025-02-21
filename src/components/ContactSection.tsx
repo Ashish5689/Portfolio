@@ -1,16 +1,112 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "./ui/card";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
+import { useToast } from "./ui/use-toast";
+
+interface FormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+const initialFormData: FormData = {
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+};
 
 const ContactSection = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const validateForm = (): boolean => {
+    if (!formData.name.trim()) {
+      toast({
+        title: "Error",
+        description: "Please enter your name",
+        variant: "destructive",
+      });
+      return false;
+    }
+    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      toast({
+        title: "Error",
+        description: "Please enter a valid email address",
+        variant: "destructive",
+      });
+      return false;
+    }
+    if (!formData.subject.trim()) {
+      toast({
+        title: "Error",
+        description: "Please enter a subject",
+        variant: "destructive",
+      });
+      return false;
+    }
+    if (!formData.message.trim()) {
+      toast({
+        title: "Error",
+        description: "Please enter your message",
+        variant: "destructive",
+      });
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add your form submission logic here
-    console.log("Form submitted");
+    
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch("https://formspree.io/f/xovjrrlp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Success",
+          description: "Thank you for your message! I'll get back to you soon.",
+        });
+        setFormData(initialFormData);
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -38,22 +134,22 @@ const ContactSection = () => {
                     <div className="flex items-center space-x-4">
                       <Mail className="h-5 w-5 text-primary" />
                       <a
-                        href="mailto:contact@example.com"
-                        className="text-muted-foreground hover:text-foreground"
+                        href="mailto:ashisheduims@gmail.com"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
                       >
-                        contact@example.com
+                        ashisheduims@gmail.com
                       </a>
                     </div>
                     <div className="flex items-center space-x-4">
                       <Phone className="h-5 w-5 text-primary" />
                       <span className="text-muted-foreground">
-                        +1 (555) 123-4567
+                        +91 7011568986
                       </span>
                     </div>
                     <div className="flex items-center space-x-4">
                       <MapPin className="h-5 w-5 text-primary" />
                       <span className="text-muted-foreground">
-                        San Francisco, CA
+                        Ghaziabad, India
                       </span>
                     </div>
                   </div>
@@ -68,6 +164,9 @@ const ContactSection = () => {
                   <div>
                     <Input
                       placeholder="Your Name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
                       required
                       className="w-full"
                     />
@@ -75,23 +174,50 @@ const ContactSection = () => {
                   <div>
                     <Input
                       type="email"
+                      name="email"
                       placeholder="Your Email"
+                      value={formData.email}
+                      onChange={handleChange}
                       required
                       className="w-full"
                     />
                   </div>
                   <div>
-                    <Input placeholder="Subject" required className="w-full" />
+                    <Input
+                      placeholder="Subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      className="w-full"
+                    />
                   </div>
                   <div>
                     <Textarea
                       placeholder="Your Message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
                       required
                       className="w-full min-h-[150px]"
                     />
                   </div>
-                  <Button type="submit" className="w-full">
-                    <Send className="mr-2 h-4 w-4" /> Send Message
+                  <Button 
+                    type="submit" 
+                    className="w-full"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="mr-2 h-4 w-4" /> 
+                        Send Message
+                      </>
+                    )}
                   </Button>
                 </form>
               </CardContent>
