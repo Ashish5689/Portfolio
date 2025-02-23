@@ -1,6 +1,7 @@
 # Modern Portfolio Website
 
 A modern, responsive portfolio website showcasing my professional experience, projects, and skills. Built with React, TypeScript, Vite, and TailwindCSS. Features a dark/light mode toggle, smooth animations, and sections for projects, experience, and contact information.
+🔗 **Portfolio:** [ashishjha-portfolio.netlify.app](https://ashishjha-portfolio.netlify.app)
 
 ## Features
 
