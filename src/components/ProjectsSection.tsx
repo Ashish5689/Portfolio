@@ -11,6 +11,7 @@ import { Badge } from "./ui/badge";
 import { Github, ExternalLink } from "lucide-react";
 import { Button } from "./ui/button";
 import todoListImage from "../assets/todoApp.png";
+import aiTranscribeImage from "../assets/Aitranscribe.png";
 
 interface Project {
   title: string;
@@ -51,6 +52,22 @@ const projects: Project[] = [
       "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600",
   },
   {
+    title: "AiTranscribe 🎙️ → 📝",
+    description:
+      "A modern, sleek, and intuitive voice-to-text transcription tool powered by the Groq API—all in real time!",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "ShadCN UI", "Groq API"],
+    features: [
+      "Instant Transcription",
+      "Intuitive Recording Interface",
+      "Real-Time Display",
+      "Session History",
+      "Fast & Secure"
+    ],
+    githubUrl: "https://github.com/Ashish5689/AiTranscribe.git",
+    liveUrl: "https://aitranscribe.netlify.app/",
+    image: aiTranscribeImage
+  },
+  {
     title: "AI Chat Application",
     description:
       "Real-time chat application with AI-powered responses and multi-language support.",
@@ -88,16 +105,6 @@ const projects: Project[] = [
     image:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600",
   },
-  {
-    title: "Fitness Tracking App",
-    description:
-      "Mobile-first fitness tracking application with workout plans and progress monitoring.",
-    technologies: ["React Native", "Firebase", "Node.js", "Express"],
-    githubUrl: "https://github.com/yourusername/fitness-tracker",
-    liveUrl: "https://fitness-app-demo.com",
-    image:
-      "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&h=600",
-  },
 ];
 
 const ProjectsSection = () => {
@@ -121,7 +128,11 @@ const ProjectsSection = () => {
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                        className={`w-full h-64 transition-transform duration-300 group-hover:scale-105 ${
+                          project.title.includes("AiTranscribe") 
+                            ? "object-contain bg-white p-2" 
+                            : "object-cover"
+                        }`}
                       />
                       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                         <Button
