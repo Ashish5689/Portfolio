@@ -12,6 +12,7 @@ import { Github, ExternalLink } from "lucide-react";
 import { Button } from "./ui/button";
 import todoListImage from "../assets/todoApp.png";
 import aiTranscribeImage from "../assets/Aitranscribe.png";
+import weatherVueImage from "../assets/weatheVue.png";
 
 interface Project {
   title: string;
@@ -68,6 +69,24 @@ const projects: Project[] = [
     image: aiTranscribeImage
   },
   {
+    title: "🌦️ WeatherVue",
+    description:
+      "A beautiful, modern weather dashboard built with React, TypeScript, and D3.js for visualizing weather data with interactive charts.",
+    technologies: ["React", "TypeScript", "D3.js", "Tailwind CSS", "Framer Motion"],
+    features: [
+      "Real-time Weather Data",
+      "Interactive D3.js Charts",
+      "Location Search",
+      "24-hour Forecast",
+      "Temperature & Humidity Trends",
+      "Unit Conversion",
+      "Responsive Design"
+    ],
+    githubUrl: "https://github.com/Ashish5689/WeatherVue",
+    liveUrl: "https://weathercue.netlify.app/",
+    image: weatherVueImage
+  },
+  {
     title: "AI Chat Application",
     description:
       "Real-time chat application with AI-powered responses and multi-language support.",
@@ -85,16 +104,6 @@ const projects: Project[] = [
     githubUrl: "https://github.com/yourusername/task-manager",
     image:
       "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600",
-  },
-  {
-    title: "Weather Dashboard",
-    description:
-      "Interactive weather dashboard with location-based forecasts and historical data.",
-    technologies: ["React", "Weather API", "D3.js", "Tailwind"],
-    githubUrl: "https://github.com/yourusername/weather-app",
-    liveUrl: "https://weather-dashboard-demo.com",
-    image:
-      "https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&h=600",
   },
   {
     title: "Social Media Analytics",
