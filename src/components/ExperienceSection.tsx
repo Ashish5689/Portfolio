@@ -4,16 +4,17 @@ import { Card, CardContent } from "./ui/card";
 
 const experiences = [
   {
-    title: "Associate Software Developer",
+    title: "Software Engineer",
     company: "Optimiser India Pvt Ltd",
     location: "Noida, India",
     duration: "October 2022 - Present",
     responsibilities: [
-      "Developed and maintained RESTful APIs using Node.js and Express.js, improving API response times by 20%",
-      "Built reusable React.js components and custom hooks for enhanced code maintainability and user experience",
-      "Implemented and optimized MongoDB database schemas and queries for efficient data management",
-      "Collaborated with the QA team to implement error handling and monitoring, reducing bug reports by 25%",
-      "Actively participated in agile ceremonies and delivered features within sprint deadlines"
+      "Developed and deployed scalable React.js and Node.js web applications, serving 10,000+ active users with enhanced user experience.",
+      "Led feature development initiatives that boosted system performance by 30% and reduced page load times by 20%.",
+      "Created reusable React components and custom hooks to improve code maintainability and accelerate development cycles.",
+      "Designed and optimized MongoDB schemas and queries, ensuring efficient and reliable data storage.",
+      "Collaborated closely with QA teams to implement robust error handling and monitoring, reducing bug reports by 25%.",
+      "Participated actively in Agile ceremonies, consistently delivering features on time within sprint deadlines."
     ]
   },
   {
@@ -22,10 +23,10 @@ const experiences = [
     location: "Gurugram, India",
     duration: "January 2022 - May 2022",
     responsibilities: [
-      "Designing Application Interface using their own Low code no code platform",
-      "Developing API and testing it on Postman",
-      "Testing applications for accuracy and functionality",
-      "Working collaboratively with other developers to optimize the codebase"
+      "Designed application interfaces using a proprietary low-code/no-code platform to accelerate UI development.",
+      "Developed and tested REST APIs using Postman, ensuring seamless integration and functionality.",
+      "Conducted thorough application testing to validate accuracy and performance.",
+      "Collaborated with the development team to optimize code quality and enhance system reliability."
     ]
   }
 ];
